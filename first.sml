@@ -32,3 +32,18 @@ fun sort_pair(pr : int * int) =
   then pr
   else (#2 pr, #1 pr)
 
+val x = [7, 8, 9]
+5::x
+6::5::x
+
+null x
+null []
+hd x
+tl x
+hd (tl x)
+
+
+3::[]
+true::[]
+
+
