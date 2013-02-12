@@ -57,3 +57,18 @@ fun is_Queen_of_Spades2 c =
        (Spade, Queen) => true
      | _ => false
 
+fun inc_or_zero intoption =
+  case intoption of
+       NONE => 0
+     | SOME i => i+1
+
+fun sum_list xs =
+  case xs of
+       [] => 0
+     | x::xs' => x + sum_list xs'
+
+fun append (xs, ys) =
+  case xs of
+       [] => ys
+     | x::xs' => x :: append(xs', ys)
+
