@@ -146,3 +146,12 @@ fun len xs =
        [] = 0
      | _::xs' => 1 + len xs'
 
+
+fun eval (Constat i) = i
+  | eval (Negate e2) = ~ (eval e2)
+  | eval (Add(e1,e2)) = (eval e1) + (eval e2)
+  | eval (Multiply(e1,e2)) = (eval e1) * (eval e2)
+
+fun append ([], ys) = ys
+  | append (x::xs',ys) = x :: append(xs',ys)
+
