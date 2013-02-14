@@ -181,3 +181,12 @@ val w = maxlist ([3,4,5],MyUndesirableCondition)
 val z = maxlist = ([],MyUndesirableCondition)
         handle MyUndesirableCondition => 42
 
+fun fact n =
+let fun aux(n, acc) =
+    if n=0
+    then acc
+    else aux(n-1,acc*n)
+in
+    aux(n,1)
+end
+
