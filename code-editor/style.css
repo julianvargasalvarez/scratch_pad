@@ -1,0 +1,19 @@
+.editor {
+      border: 2px solid;
+        height: 100px;
+          width: 300px;
+      }
+
+      .cursor:after {
+            /* esto va parpadeando */
+            content: '_';
+        }
+
+        .key-word {
+              color: blue;
+                font-weight: bold:
+            }
+
+            .statement {
+                  color: red;
+              }
