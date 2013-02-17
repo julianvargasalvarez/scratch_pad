@@ -34,8 +34,8 @@ fun get_substitutions1 (x, s) =
                end
 
 
-fun get_substitutions2 (x, s) =
-let fun acc (x, s, y) =
+fun get_substitutions2 (x : (string list) list, s : string) =
+let fun acc (x : (string list) list, s : string, y : string list) =
   case x of
        [] => y
      | m::n => case all_except_option (s, m) of
@@ -45,17 +45,14 @@ in
   acc(x, s, [])
 end
 
-fun similar_names (x, y : {first:string,middle:string,last:string}) =
-let fun euo (a) =
+fun similar_names (x : (string list) list, y : {first:string,middle:string,last:string}) =
+let fun euo (a : string list) =
   case a of
        [] => []
      | b::c =>
-         {first= b, middle= (#middle y), last= (#last y)}::euo(c)
+         {first= b, middle= (#middle y), last= (#last y)} :: euo(c)
 in
-  case x of
-       [] => []
-     | q::k =>
-         euo ( get_substitutions2 (q, (#first y)) ) @ similar_names (k, y)
+  y :: euo ( get_substitutions2 (x, (#first y)) )
 end
 
 (* you may assume that Num is always used with values 2, 3, ..., 10
