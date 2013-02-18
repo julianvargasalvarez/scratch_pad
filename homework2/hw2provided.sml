@@ -49,10 +49,13 @@ fun similar_names (x : (string list) list, y : {first:string,middle:string,last:
 let fun euo (a : string list) =
   case a of
        [] => []
-     | b::c =>
-         {first= b, middle= (#middle y), last= (#last y)} :: euo(c)
+     | b::c => let val {first=_, middle=m, last=l} = y in
+                  {first=b, middle=m, last=l} :: euo(c)
+               end
 in
-  y :: euo ( get_substitutions2 (x, (#first y)) )
+  let val {first=f, middle=_, last=_} = y in
+      y :: euo ( get_substitutions2 (x, f) )
+  end
 end
 
 (* you may assume that Num is always used with values 2, 3, ..., 10
