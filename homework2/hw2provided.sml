@@ -70,3 +70,59 @@ datatype move = Discard of card | Draw
 exception IllegalMove
 
 (* put your solutions for problem 2 here *)
+
+fun card_color c =
+  case c of
+       (Clubs, _)  => Black
+     | (Spades, _) => Black
+     | _ => Red
+
+fun card_value c =
+  case c of
+       (_, Ace) => 11
+     | _ => 10
+
+fun remove_card (cs, c, e) =
+  case cs of
+       [] => raise e
+     | h::t =>
+         if h = c
+         then t
+         else h :: remove_card (t, c, e)
+
+fun all_same_color (c : card list)  =
+let fun oe (cs, r) =
+  case cs of
+    [] => true
+  | h::t =>
+      if r <> card_color (h)
+      then false
+      else oe (t, r)
+in
+  let val x::_ = c in
+    oe ( c, card_color (x) )
+  end
+end
+
+fun sum_cards (c : card list) =
+let fun suma (c, t) =
+  case c of
+       [] => t
+     | h::k => suma(k, t+card_value(h))
+in
+  suma(c, 0)
+end
+
+fun score (c : card list, goal : int) =
+let val sum = sum_cards (c) in
+  let val preliminary = if sum > goal
+                        then 3 * (sum - goal)
+                        else goal - sum
+  in
+    if all_same_color (c)
+    then
+      preliminary div 2
+    else
+      preliminary
+  end
+end
