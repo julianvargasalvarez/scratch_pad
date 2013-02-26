@@ -1,1 +1,3 @@
 http://net.tutsplus.com/tutorials/python-tutorials/test-driven-development-in-python/
+workon tdd_python
+nosetests python_test.py --rednose
