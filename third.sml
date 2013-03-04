@@ -38,3 +38,11 @@ fun nth_tail(n,x) = n_times(tl,n,x)
 fun triple x = 3 * x
 fun triple_n_times(n,x) = n_times(triple, n, x)
 
+fun temes_until_zero(f, x) =
+  if x=0 then 0 else 1 + times_until_zero(f, f x)
+
+fun len xs =
+  case xs of
+       [] => 0
+     | _::xs' => 1 + len xs'
+
