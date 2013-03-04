@@ -126,3 +126,20 @@ let val sum = sum_cards (c) in
       preliminary
   end
 end
+
+fun officiate (cs : card list, ms : move list, g : int) =
+let fun da (cs, ms, g, held) =
+  case ms of
+       [] => score (held, g)
+     | Discard c::rs => da (cs, rs, g, remove_card (held, c, IllegalMove) )
+     | Draw::rs => case rs of
+                    [] => score (held, g)
+                      | the_rs => if sum_cards (held) > g
+                                    then score (held, g)
+                                    else case cs of
+                                              kkk::mmm => da (mmm, the_rs, g,
+                                              kkk::held)
+
+in
+  da (cs, ms, g, [])
+end
