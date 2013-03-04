@@ -44,5 +44,8 @@ fun temes_until_zero(f, x) =
 fun len xs =
   case xs of
        [] => 0
-     | _::xs' => 1 + len xs'
+     | x::xs' => 1 + len xs'
+
+fun triple_n_times(n, x) =
+  n_times((fn x => 3*x), n, x)
 
