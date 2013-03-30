@@ -49,3 +49,24 @@ fun len xs =
 fun triple_n_times(n, x) =
   n_times((fn x => 3*x), n, x)
 
+fun map(f, xs) =
+  case xs of
+       [] => []
+     | x::xs' => (f x)::map(f,xs')
+
+val x1 = map((fn x => x + 1), [4,8,12816])
+val x2 = map(hd, [[1,2],[3,4],[5,6,7]])
+
+fun filter(f, xs) =
+  case xs of
+       [] => []
+     | x::xs' => if f x
+                then x::(filter (f, xs'))
+                else finter(f, xs')
+fun is_even v =
+  (v mod 2 = 0)
+
+fun all_even xs = filter(is_even, xs)
+
+fun all_even_snd xs = filter((fn (_,v) => is_even v), xs)
+
