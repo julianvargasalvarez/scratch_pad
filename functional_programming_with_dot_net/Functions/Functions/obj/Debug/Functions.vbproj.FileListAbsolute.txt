@@ -1,0 +1,9 @@
+c:\users\julian\documents\visual studio 2012\Projects\Functions\Functions\bin\Debug\Functions.exe.config
+c:\users\julian\documents\visual studio 2012\Projects\Functions\Functions\bin\Debug\Functions.exe
+c:\users\julian\documents\visual studio 2012\Projects\Functions\Functions\bin\Debug\Functions.pdb
+c:\users\julian\documents\visual studio 2012\Projects\Functions\Functions\bin\Debug\Functions.xml
+c:\users\julian\documents\visual studio 2012\Projects\Functions\Functions\obj\Debug\Functions.Resources.resources
+c:\users\julian\documents\visual studio 2012\Projects\Functions\Functions\obj\Debug\Functions.vbproj.GenerateResource.Cache
+c:\users\julian\documents\visual studio 2012\Projects\Functions\Functions\obj\Debug\Functions.exe
+c:\users\julian\documents\visual studio 2012\Projects\Functions\Functions\obj\Debug\Functions.xml
+c:\users\julian\documents\visual studio 2012\Projects\Functions\Functions\obj\Debug\Functions.pdb
