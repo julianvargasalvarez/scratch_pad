@@ -7,59 +7,29 @@ Leh_func_begin1:
 Ltmp0:
 	movq	%rsp, %rbp
 Ltmp1:
-	subq	$32, %rsp
+	subq	$16, %rsp
 Ltmp2:
-	movl	$0, -16(%rbp)
-	movl	$10, -16(%rbp)
-	movl	-16(%rbp), %eax
-	movl	%eax, -16(%rbp)
-	movl	-16(%rbp), %eax
-	xorb	%cl, %cl
-	leaq	L_.str(%rip), %rdx
-	movq	%rdx, %rdi
-	movl	%eax, %esi
-	movb	%cl, %al
-	callq	_printf
-	movl	$3, -20(%rbp)
-	movl	$5, -24(%rbp)
-	movl	-20(%rbp), %ecx
-	movl	-24(%rbp), %edx
-	xorl	%edx, %ecx
-	movl	%ecx, -20(%rbp)
-	movl	-24(%rbp), %ecx
-	movl	-20(%rbp), %edx
-	xorl	%edx, %ecx
-	movl	%ecx, -24(%rbp)
-	movl	-20(%rbp), %ecx
-	movl	-24(%rbp), %edx
-	xorl	%edx, %ecx
-	movl	%ecx, -20(%rbp)
-	movl	-20(%rbp), %ecx
-	movl	%ecx, -12(%rbp)
-	movl	-20(%rbp), %ecx
-	movslq	%ecx, %rcx
-	xorb	%dl, %dl
-	movq	%rcx, %rdi
-	movb	%dl, %al
-	callq	_printf
-	movl	-24(%rbp), %ecx
-	movslq	%ecx, %rcx
-	xorb	%dl, %dl
-	movq	%rcx, %rdi
-	movb	%dl, %al
-	callq	_printf
+	leaq	L_.str(%rip), %rax
+	movq	%rax, %rdi
+	callq	_puts
+	leaq	L_.str1(%rip), %rax
+	movq	%rax, %rdi
+	callq	_puts
 	movl	$0, -8(%rbp)
 	movl	-8(%rbp), %eax
 	movl	%eax, -4(%rbp)
 	movl	-4(%rbp), %eax
-	addq	$32, %rsp
+	addq	$16, %rsp
 	popq	%rbp
 	ret
 Leh_func_end1:
 
 	.section	__TEXT,__cstring,cstring_literals
 L_.str:
-	.asciz	 "The value of size is [%d]\n"
+	.asciz	 "MACRO TEST1 is defined"
+
+L_.str1:
+	.asciz	 "MACRO TEST3 is NOT defined"
 
 	.section	__TEXT,__eh_frame,coalesced,no_toc+strip_static_syms+live_support
 EH_frame0:

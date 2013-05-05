@@ -1,7 +1,7 @@
-# 1 "macro.c"
+# 1 "macro2.c"
 # 1 "<built-in>"
 # 1 "<command-line>"
-# 1 "macro.c"
+# 1 "macro2.c"
 # 1 "/usr/include/stdio.h" 1 3 4
 # 64 "/usr/include/stdio.h" 3 4
 # 1 "/usr/include/sys/cdefs.h" 1 3 4
@@ -421,26 +421,18 @@ extern int __vsprintf_chk (char * , int, size_t,
 extern int __vsnprintf_chk (char * , size_t, int, size_t,
        const char * , va_list);
 # 500 "/usr/include/stdio.h" 2 3 4
-# 2 "macro.c" 2
+# 2 "macro2.c" 2
+
+int main() {
+# 13 "macro2.c"
+  printf("MACRO TEST1 is defined\n");
 
 
 
 
 
+  printf("MACRO TEST3 is NOT defined\n");
 
-int main(void)
-{
-  int size = 0;
-  size = size = 10;
-  printf("The value of size is [%d]\n", size);
-
-  int three = 3;
-  int five = 5;
-
-  ({three ^= five; five ^= three; three ^= five;});
-
-  printf(three);
-  printf(five);
 
   return 0;
 }
