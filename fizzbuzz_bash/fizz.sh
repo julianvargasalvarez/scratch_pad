@@ -5,12 +5,8 @@ function isDivisibleBy {
 
 function fizzOrBuzz {
     output=""
-    if isDivisibleBy $1 3; then
-        output="Fizz"
-    fi
-    if isDivisibleBy $1 5; then
-        output="${output}Buzz"
-    fi
+    isDivisibleBy $1 3 && output="Fizz"
+    isDivisibleBy $1 5 && output="${output}Buzz"
     if [ -z $output ]; then
         echo $1
     else
