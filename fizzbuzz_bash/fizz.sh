@@ -1,10 +1,14 @@
 #!/bin/bash
+function isDivisibleBy {
+  return $(($1%$2))
+}
+
 for number in {1..100}; do
     output=""
-    if [ $((number%3)) -eq 0 ]; then
+    if isDivisibleBy $number 3; then
         output="Fizz"
     fi
-    if [ $((number%5)) -eq 0 ]; then
+    if isDivisibleBy $number 5; then
         output="${output}Buzz"
     fi
     if [ -z $output ]; then
