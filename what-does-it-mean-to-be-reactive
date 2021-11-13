@@ -1,0 +1,147 @@
+Notes on: React 2014: Erik Meijer - What does it mean to be Reactive?
+https://www.youtube.com/watch?v=sTSQlYX5DU0
+
+The four fundamental Effects
+          One            Many
+Sync       T             Enumerable[T]
+Async     Future[T]      Observable[T]
+
+
+()=>A # Getter, lazy producer, only produces something when called, no params needed.
+
+A <: B          # A is subtype of B
+()=>A <: ()=>B
+
+Functor
+def map: (    A     =>B )
+       =>(()=>A)=>()=>B
+map f a = ()=>f(a())
+
+Side effects: Exceptions
+()=>Try[A]
+
+Side effects: Termination&Exception
+()=>Try[Option[A]]
+
+Getter getter
+()=>(
+  ()=>Try[Option[A]]
+)
+
+
+Interfaces
+trait Enumerable[+T]{
+  def getEnumerator(): Enumerator[T]
+}
+
+trait Enumerator[+T] {
+  def moveNext(): Boolean
+  def current: T
+}
+
+Functor
+def map:    (A =>           B)
+=>Enumerable[A]=>Enumerable[B]
+
+map f as = as.lift(_.map)
+
+Setter
+
+A=>()
+
+Contravariant
+    A <: B
+B=>() <: A=>()
+
+coFunctor
+val map: (A  =>B)
+=>((B=>())=>(A=>()))
+
+map f b = a=>(b(f a))
+
+Side effects: Exception
+Try[A]=>()
+Side effects: Termination&Exceptions
+Try[Option[A]]=>()
+
+Interfaces
+trait Observable[+T]{
+  def subscribe(o: Observer[T]): ()
+}
+
+trait Observer[-T]{
+  def onCompleted(): ()
+  def onError(error: Throwable): ()
+  def onNext(value: T): ()
+}
+
+Setter Setter
+(
+  Try[Option[A]]=>()
+)=>()
+
+
+val map: ( A =>           B)=>
+Observable[A]=>Observable[B]
+
+map f as = as.lift(_.map)
+
+
+More Explicit Effects: Latency
+Slow producer
+val xs; Enumerable[T]=...
+val ys=xs.getEnumerator()
+if(ys.moveNext()){consume(ys.current)}
+
+Slow consumer
+val xs; Observable[T]=...
+val ys=xs.subscribe(new Observer[T]){
+  def onNext(value:T):()={consumer(value)}
+})
+
+Future is something that guards you agains the effect of latency.
+Future captures the effect of latency
+Try captures the effect of exception
+Option captures the effect of null or not null
+
+
+Other effect: Latency
+()=>Try[Option[A]]
+()=>Future[Try[Optional[A]]]
+
+Interfaces: Async Iterable
+trait Enumerable[+T]{
+  def getEnumerator(): Enumerator[T]
+}
+
+trait Enumerator[+T]{
+  def moveNext():Future[Boolean]
+  def current: T
+}
+IAsincEnumerable.cs
+
+
+
+Other effects: Latency
+Try[Option[A]]=>()
+Try[Option[A]]=>Future[()]
+
+Interfaces: Async Observable
+trait Observable[+T]{
+  def Subscribe(o: Observer[T]): Unit
+}
+
+trait Observer[-T]{
+  def onCompleted():             Future[()]
+  def onError(error: Throwable): Future[()]
+  def onNext(value: T):          Future[()]
+}
+
+appliedduality in github
+
+          One            Many
+Sync       T             Enumerable[T]
+                         AsyncIterable[T]
+
+Async     Future[T]      Observable[T]
+                         AsyncObservable[T]
